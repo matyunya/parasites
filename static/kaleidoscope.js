@@ -101,8 +101,8 @@ onKeyDown = function (_this) {
         var cx, cy, dx, dy, hx, hy;
           cx = window.innerWidth / 2;
           cy = window.innerHeight / 2;
-          dx = snake.position.x / window.innerWidth;
-          dy = snake.position.y / window.innerHeight;
+          dx = snake.vx / window.innerWidth;
+          dy = snake.vy / window.innerHeight;
           hx = dx - 0.5;
           hy = dy - 0.5;
           tx = hx * kaleidoscope.radius * -2;
