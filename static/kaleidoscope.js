@@ -17,7 +17,7 @@ Kaleidoscope = function () {
             offsetX: 0,
             offsetY: 0,
             radius: screen.width/2 + 180,
-            slices: 12,
+            slices: 24,
             zoom: 1
         };
         ref = this.defaults;
@@ -43,7 +43,7 @@ Kaleidoscope = function () {
     }
     Kaleidoscope.prototype.draw = function () {
         var cx, i, index, ref, results, scale, step;
-        this.domElement.width = this.domElement.height = this.radius * 5;
+        this.domElement.width = this.domElement.height = this.radius*2;
         this.context.fillStyle = this.context.createPattern(this.image, 'repeat');
         scale = this.zoom * (this.radius / Math.min(this.image.width, this.image.height));
         step = this.TWO_PI / this.slices;
@@ -97,7 +97,6 @@ ty = kaleidoscope.offsetY;
 tr = kaleidoscope.offsetRotation;
 onKeyDown = function (_this) {
     return function (event) {
-      console.log(event)
         var cx, cy, hx, hy;
         cx = window.innerWidth / 2;
         cy = window.innerHeight / 2;
@@ -111,19 +110,14 @@ onKeyDown = function (_this) {
 
 onKeyUp = function (_this) {
     return function (event) {
-      console.log(event)
-        var cx, cy, hx, hy;
-        cx = window.innerWidth / 2;
-        cy = window.innerHeight / 2;
+        var hx, hy;
         hx = 0.01;
         hy = 0.01;
-        tx = hx * kaleidoscope.radius * -1.05;
-        ty = hy * kaleidoscope.radius * 1.05;
         return tr = Math.atan2(hy, hx);
     };
 }(this);
-window.addEventListener('keydown', onKeyDown, false);
-window.addEventListener('keyup', onKeyUp, false);
+window.addEventListener('keydown', onKeyDown, true);
+window.addEventListener('keyup', onKeyUp, true);
 
 options = {
     ease: 0.05
@@ -138,6 +132,6 @@ options = {
         kaleidoscope.offsetY += (ty - kaleidoscope.offsetY) * options.ease;
         kaleidoscope.offsetRotation += (theta - kaleidoscope.offsetRotation) * options.ease;
         kaleidoscope.draw();
-        return setTimeout(update, 3000 / 60);
+        return setTimeout(update, 2500 / 60);
     };
 }(this))();

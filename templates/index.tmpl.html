@@ -25,7 +25,7 @@ document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Container();
 
-var texture = PIXI.Texture.fromImage('/static/img/favicon.png');
+var texture = PIXI.Texture.fromImage('/static/img/amoeba.png');
 
 var snake = new PIXI.Sprite(texture);
 
@@ -40,12 +40,11 @@ snake.vy = 0;
 
 stage.addChild(snake);
 
-animate();
-function animate() {
-    requestAnimationFrame(animate);
+loop();
 
+function loop() {
+    requestAnimationFrame(loop);
     controls(snake);
-
     renderer.render(stage);
 }
 
