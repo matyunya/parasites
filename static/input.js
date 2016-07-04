@@ -98,5 +98,6 @@ function keyboard(keyCode) {
   window.addEventListener(
     "keyup", key.upHandler.bind(key), false
   );
+  
   return key;
 }

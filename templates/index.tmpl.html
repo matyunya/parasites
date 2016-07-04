@@ -15,8 +15,12 @@ body {
 }
 </style>
 <body>
+
 <script type="text/javascript">
-  var renderer = PIXI.autoDetectRenderer(screen.width, screen.height,{backgroundColor : "black"});
+
+var renderer = new PIXI.CanvasRenderer(screen.width, screen.height, {
+    transparent:true
+});
 document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Container();
@@ -46,4 +50,5 @@ function animate() {
 }
 
 </script>
+<script src="/static/kaleidoscope.js"></script>
 </body>
