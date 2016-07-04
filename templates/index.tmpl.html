@@ -49,6 +49,21 @@ function animate() {
     bunny.x += bunny.vx;
     bunny.y += bunny.vy;
 
+    if (bunny.position.x < 0) {
+        bunny.position.x = screen.width;
+    }
+
+    if (bunny.position.x > screen.width) {
+        bunny.position.x = 0;
+    }
+
+    if (bunny.position.y < 0) {
+        bunny.position.y = screen.height;
+    }
+
+    if (bunny.position.y > screen.height) {
+        bunny.position.y = 0;
+    }
     // render the container
     renderer.render(stage);
 }
