@@ -26,9 +26,24 @@ document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Container();
 
-var texture = PIXI.Texture.fromImage('/static/img/amoeba.png');
+var snakeTexture = PIXI.Texture.fromImage('/static/img/amoeba.png');
+var enemy1Texture = PIXI.Texture.fromImage('/static/img/enemy1.png');
+var enemy2Texture = PIXI.Texture.fromImage('/static/img/enemy2.png');
 
-var snake = new PIXI.Sprite(texture);
+var snake = new PIXI.Sprite(snakeTexture);
+
+var e1 = new PIXI.Container();
+var e2 = new PIXI.Container();
+for (i = 0; i < 40; i++) {
+    var enemy1 = new PIXI.Sprite(enemy1Texture);
+    var enemy2 = new PIXI.Sprite(enemy2Texture);
+    enemy1.position.x = Math.random() * screen.width;
+    enemy1.position.y = Math.random() * screen.height;
+    enemy2.position.x = Math.random() * screen.width;
+    enemy2.position.y = Math.random() * screen.height;
+    e2.addChild(enemy2);
+    e1.addChild(enemy1);
+}
 
 snake.anchor.x = 0.5;
 snake.anchor.y = 0.5;
@@ -39,13 +54,24 @@ snake.position.y = 150;
 snake.vx = 0;
 snake.vy = 0;
 
+stage.addChild(e1);
+stage.addChild(e2);
 stage.addChild(snake);
 
 loop();
 
 function loop() {
     requestAnimationFrame(loop);
+
+    var a = Math.random()
+    var b = a * screen.width / 400
+    e1.position.x += a > 0.3 ? b : b * -1 ;
+    e1.position.y += a > 0.3 ? b * -1 : b ;
+    e2.position.x += a > 0.3 ? b * -1 : b ;
+    e2.position.y += a > 0.3 ? b : b * -1 ;
+
     controls(snake);
+
     renderer.render(stage);
 }
 

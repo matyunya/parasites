@@ -6,11 +6,13 @@ var left = keyboard(37),
 left.press = function() {
   snake.vx = -5;
   snake.vy = 0;
+  e1.vx = 0.05;
+  e.vy = Math.random();
 };
 
 left.release = function() {
-  if (!right.isDown && snake.vy === 0) {
-    snake.vx = snake.vx*-0.2;
+  if (!right.isDown) {
+    snake.vx = snake.vx*-0.02;
   }
 };
 
@@ -20,18 +22,19 @@ up.press = function() {
 };
 
 up.release = function() {
-  if (!down.isDown && snake.vx === 0) {
-    snake.vy = snake.vy*-0.2;
+  if (!down.isDown) {
+    snake.vy = snake.vy*-0.02;
   }
 };
 
 right.press = function() {
   snake.vx = 5;
   snake.vy = 0;
+  e1.vx += -15;
 };
 right.release = function() {
-  if (!left.isDown && snake.vy === 0) {
-    snake.vx = snake.vx*-0.2;
+  if (!left.isDown) {
+    snake.vx = snake.vx*-0.02;
   }
 };
 
@@ -41,30 +44,34 @@ down.press = function() {
 };
 
 down.release = function() {
-  if (!up.isDown && snake.vx === 0) {
-    snake.vy = snake.vy*-0.2;
+  if (!up.isDown) {
+    snake.vy = snake.vy*-0.02;
   }
 };
 
-function controls(snake) {
-  snake.x += snake.vx;
-  snake.y += snake.vy;
+function move(object) {
+  object.x += object.vx;
+  object.y += object.vy;
 
-  if (snake.position.x < 0) {
-      snake.position.x = screen.width;
+  if (object.position.x < 0) {
+      object.position.x = screen.width;
   }
 
-  if (snake.position.x > screen.width) {
-      snake.position.x = 0;
+  if (object.position.x > screen.width) {
+      object.position.x = 0;
   }
 
-  if (snake.position.y < 0) {
-      snake.position.y = screen.height;
+  if (object.position.y < 0) {
+      object.position.y = screen.height;
   }
 
-  if (snake.position.y > screen.height) {
-      snake.position.y = 0;
+  if (object.position.y > screen.height) {
+      object.position.y = 0;
   }
+}
+
+function controls() {
+  move(snake);
 }
 
 function keyboard(keyCode) {
@@ -98,6 +105,6 @@ function keyboard(keyCode) {
   window.addEventListener(
     "keyup", key.upHandler.bind(key), false
   );
-  
+
   return key;
 }
