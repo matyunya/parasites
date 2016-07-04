@@ -1,0 +1,11 @@
+{
+  "name": "Parasites",
+  "description": "Parks, Squares And Alleys \"Parasites\" interactive music video",
+  "keywords": [
+    "parasites", "parks", "squares", "alleys"
+  ],
+  "image": "heroku/go:1.6",
+  "mount_dir": "src/github.com/matyunya/parasites",
+  "website": "https://parasites.herokuapp.com",
+  "repository": "http://github.com/matyunya/parasites"
+}
