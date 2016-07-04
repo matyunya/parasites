@@ -81,7 +81,7 @@ image.onload = function (_this) {
         return kaleidoscope.draw();
     };
 }(this);
-image.src = '/static/img/1.jpg';
+image.src = '/static/img/3.jpg';
 kaleidoscope = new Kaleidoscope({
     image: image,
     slices: 8
@@ -95,29 +95,23 @@ document.body.appendChild(kaleidoscope.domElement);
 tx = kaleidoscope.offsetX;
 ty = kaleidoscope.offsetY;
 tr = kaleidoscope.offsetRotation;
+
 onKeyDown = function (_this) {
     return function (event) {
-        var cx, cy, hx, hy;
-        cx = window.innerWidth / 2;
-        cy = window.innerHeight / 2;
-        hx = -0.01;
-        hy = -0.01;
-        tx = hx * kaleidoscope.radius * -1.05;
-        ty = hy * kaleidoscope.radius * 1.05;
-        return tr = Math.atan2(hy, hx);
+        var cx, cy, dx, dy, hx, hy;
+          cx = window.innerWidth / 2;
+          cy = window.innerHeight / 2;
+          dx = snake.position.x / window.innerWidth;
+          dy = snake.position.y / window.innerHeight;
+          hx = dx - 0.5;
+          hy = dy - 0.5;
+          tx = hx * kaleidoscope.radius * -2;
+          ty = hy * kaleidoscope.radius * 2;
+          return tr = Math.atan2(hy, hx);
     };
 }(this);
 
-onKeyUp = function (_this) {
-    return function (event) {
-        var hx, hy;
-        hx = 0.01;
-        hy = 0.01;
-        return tr = Math.atan2(hy, hx);
-    };
-}(this);
 window.addEventListener('keydown', onKeyDown, true);
-window.addEventListener('keyup', onKeyUp, true);
 
 options = {
     ease: 0.05

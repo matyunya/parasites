@@ -21,6 +21,7 @@ body {
 var renderer = new PIXI.CanvasRenderer(screen.width, screen.height, {
     transparent:true
 });
+renderer.view.style.margin = renderer.view.style.padding = 0;
 document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Container();
